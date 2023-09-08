@@ -7,27 +7,34 @@ import {TodoList} from "./components/TodoList";
 import {TodoButton} from "./components/TodoButton";
 import {TodoItem} from "./components/TodoItem";
 
-const localStorageTODOsList = localStorage.getItem('TODOs_1');
 
-function useLocalStorage(){
+function useLocalStorage(itemName, initialItems){
 
+    const localStorageItems = localStorage.getItem(itemName);
+
+    let parsedItems;
+    if (!localStorageItems) {
+        localStorage.setItem(itemName, JSON.stringify(initialItems));
+        parsedItems = initialItems
+    } else {
+        parsedItems = JSON.parse(localStorageItems);
+    }
+
+    const [items, setItems] = React.useState(parsedItems);
+
+    const saveItems = (items) => {
+        localStorage.setItem(itemName, JSON.stringify(items));
+        setItems(items)
+    }
+    return [items, saveItems];
 }
 
-function setLocalStorage(newTODOs) {
-    localStorage.setItem('TODOs_1', JSON.stringify(newTODOs));
-}
 
-let parsedTODOsList;
-if (!localStorageTODOsList) {
-    setLocalStorage([]);
-    parsedTODOsList = []
 
-} else {
-    parsedTODOsList = JSON.parse(localStorageTODOsList);
-}
+
 
 function App() {
-    const [TODOs, setTODOs] = React.useState(parsedTODOsList);
+    const [TODOs, saveTODOs] = useLocalStorage('TODOs_1' ,[]);
     const [searchValue, setSearchValue] = React.useState("");
     const totalTODOs = TODOs.length;
     const completedTODOs = TODOs.filter(todo => todo.completed).length;
@@ -38,10 +45,6 @@ function App() {
 
 
 
-    const saveTODOs = (newTODOs) => {
-        setLocalStorage(newTODOs);
-        setTODOs(newTODOs)
-    }
 
     const onCompleteTODO = (todoKey) => {
         console.log("Check " + todoKey);
@@ -52,7 +55,7 @@ function App() {
     };
 
     function getIndex(updatedTODOs, todoKey) {
-        return updatedTODOs.findIndex(item => item.key == todoKey);
+        return updatedTODOs.findIndex(item => item.key === todoKey);
     }
 
     const onDeleteTODO = (todoKey) => {
@@ -85,7 +88,7 @@ function App() {
                 )}
             </TodoList>
             <TodoButton/>
-            {/*<Header/>*/}
+            {<Header/>}
 
         </>
     );
@@ -95,7 +98,7 @@ function Header() {
     return (
         <React.Fragment>
             <header className="App-header">
-                <img src={logoFlyka} className="App-logo" alt="logo"/>
+                <img src={logoFlyka}  className="App-logo" alt="logo"/>
                 <a
                     className="App-link"
                     href="http://flyka.ar"
