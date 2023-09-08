@@ -1,9 +1,9 @@
 import React from "react";
-import "../styles/Icon.css";
-import {ReactComponent as CheckSVG} from "../resources/icons/icon-check.svg";
-import {ReactComponent as DeleteSVG} from "../resources/icons/icon-delete.svg";
+import "./Icon.css";
+import {ReactComponent as CheckSVG} from "./icon-check.svg";
+import {ReactComponent as DeleteSVG} from "./icon-delete.svg";
 
-function Icon({type, color, onClick}) {
+function TodoIcon({type, color, onClick}) {
 
     const iconTypes = {
         "check": (color) => <CheckSVG fill={color}/>,
@@ -21,4 +21,4 @@ function Icon({type, color, onClick}) {
     );
 }
 
-export {Icon};
+export {TodoIcon};

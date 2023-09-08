@@ -1,9 +1,9 @@
-import "../styles/TodoButton.css"
+import "./AddTodoButton.css"
 
-function TodoButton() {
+function AddTodoButton() {
     return (
         <button
-            className="CreateTodoButton"
+            className="AddTodoButton"
             onClick={
                 (event) => {
                     console.log("Click")
@@ -16,4 +16,4 @@ function TodoButton() {
     );
 }
 
-export {TodoButton}
+export {AddTodoButton}

@@ -1,16 +1,15 @@
-import "../styles/TodoItem.css"
-import {CheckIcon} from "./CheckIcon";
-import {DeleteIcon} from "./DeleteIcon";
+import "./TodoItem.css"
+import {CheckIcon} from "../TodoIcon/CheckIcon";
+import {DeleteIcon} from "../TodoIcon/DeleteIcon";
 
 function TodoItem(props) {
-    const textClassName = `TodoItem-p ${props.completed && "TodoItem-p--complete"}`;
 
     return (<li className="TodoItem">
         <CheckIcon
             completed = {props.completed}
             onComplete = {props.onComplete}
         />
-        <p className={textClassName}>
+        <p className={`TodoItem-p ${props.completed && "TodoItem-p--complete"}`}>
             {props.text}
         </p>
         <DeleteIcon

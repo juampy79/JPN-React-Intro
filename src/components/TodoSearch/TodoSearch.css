@@ -46,14 +46,9 @@
     font-weight: 400;
 }
 
-/*.TodoSearch:focus {*/
-/*    outline-color: #61fa6e;*/
-/*    background-color: lightgrey;*/
-/*    font-size: 36px;*/
-/*}*/
 
 .TodoSearch:hover {
-    outline-color: #61fa6e;
+    outline-color: #25121a;
     background-color: lightgrey;
     font-size: 24px;
 }

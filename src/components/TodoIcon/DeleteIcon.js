@@ -1,8 +1,8 @@
 import React from "react";
-import {Icon} from "./Icon";
+import {TodoIcon} from "./TodoIcon";
 
 function DeleteIcon({onDelete}) {
-    return <Icon
+    return <TodoIcon
         type="delete"
         color="gray"
         onClick={onDelete}

@@ -1,4 +1,3 @@
-
 .Icon-container {
     cursor: pointer;
     display: flex;
@@ -19,19 +18,8 @@
 
 .Icon-container-delete {
     position: absolute;
-    /*top: -24px;*/
     right: 24px;
 }
 .Icon-container-delete svg :hover {
     fill: red;
 }
-
-/*.Icon-svg {*/
-/*    width: 48px;*/
-/*    height: 48px;*/
-/*}*/
-
-
-/*.Icon-container-delete:hover .Icon-svg {*/
-/*    fill: red;*/
-/*}*/
