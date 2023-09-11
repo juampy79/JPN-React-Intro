@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/JPN-React-Intro/static/css/main.65f51597.css",
+    "main.js": "/JPN-React-Intro/static/js/main.61401bf2.js",
+    "static/media/flyka raw.png": "/JPN-React-Intro/static/media/flyka raw.9cc961ecb4fe5a94a652.png",
+    "index.html": "/JPN-React-Intro/index.html",
+    "static/media/icon-delete.svg": "/JPN-React-Intro/static/media/icon-delete.485e013e09801ae2e17abfdf982ada3d.svg",
+    "static/media/icon-check.svg": "/JPN-React-Intro/static/media/icon-check.edbea5148a4411fb662d5213d7fccd67.svg",
+    "main.65f51597.css.map": "/JPN-React-Intro/static/css/main.65f51597.css.map",
+    "main.61401bf2.js.map": "/JPN-React-Intro/static/js/main.61401bf2.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.65f51597.css",
+    "static/js/main.61401bf2.js"
+  ]
+}
