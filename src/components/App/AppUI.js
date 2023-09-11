@@ -8,51 +8,48 @@ import logoFlyka from "../../resources/flyka raw.png";
 import React from "react";
 import {TodoError} from "../TodoError/TodoError";
 import {TodoInitial} from "../TodoInitial/TodoInitial";
+import {TodoContext} from "../TodoContext/TodoContext";
 
 
-function AppUI({
-                   completedTODOs,
-                   totalTODOs,
-                   searchValue,
-                   setSearchValue,
-                   filteredTODOs,
-                   onCompleteTODO,
-                   onDeleteTODO,
-                   loading,
-                   error
-               }) {
+function AppUI() {
     return (
         <>
-            <TodoCounter
-                completed={completedTODOs}
-                total={totalTODOs}
-            />
-            <TodoSearch
-                searchValue={searchValue}
-                setSearchValue={setSearchValue}
-            />
-            <TodoList>
-                {loading &&
-                    (<>
-                        <TodoLoading/>
-                        <TodoLoading/>
-                        <TodoLoading/>
-                    </>)
-                }
-                {error && <TodoError/>}
-                {(!loading && filteredTODOs.length === 0) && <TodoInitial/>}
+            <TodoCounter/>
+            <TodoSearch/>
+            <TodoContext.Consumer>
+                {(
+                    {
+                    filteredTODOs,
+                    onCompleteTODO,
+                    onDeleteTODO,
+                    loading,
+                    error}
+                ) => (
+                    <TodoList>
+                        {loading &&
+                            (<>
+                                <TodoLoading/>
+                                <TodoLoading/>
+                                <TodoLoading/>
+                            </>)
+                        }
+                        {error && <TodoError/>}
+                        {(!loading && filteredTODOs.length === 0) && <TodoInitial/>}
 
-                {filteredTODOs.map(
-                    item => (
-                        <TodoItem key={item.key}
-                                  text={item.text}
-                                  completed={item.completed}
-                                  onComplete={() => onCompleteTODO(item.key)}
-                                  onDelete={() => onDeleteTODO(item.key)}
-                        />
-                    )
+                        {filteredTODOs.map(
+                            item => (
+                                <TodoItem key={item.key}
+                                          text={item.text}
+                                          completed={item.completed}
+                                          onComplete={() => onCompleteTODO(item.key)}
+                                          onDelete={() => onDeleteTODO(item.key)}
+                                />
+                            )
+                        )}
+                    </TodoList>
                 )}
-            </TodoList>
+
+            </TodoContext.Consumer>
             <AddTodoButton/>
             {<Footer/>}
         </>
