@@ -1,30 +1,33 @@
+import React from "react";
+import logoFlyka from "../../resources/flyka raw.png";
 import {TodoCounter} from "../TodoCounter/TodoCounter";
 import {TodoSearch} from "../TodoSearch/TodoSearch";
 import {TodoList} from "../TodoList/TodoList";
 import {TodoItem} from "../TodoItem/TodoItem";
 import {TodoLoading} from "../TodoLoading/TodoLoading";
 import {AddTodoButton} from "../AddTodoButton/AddTodoButton";
-import logoFlyka from "../../resources/flyka raw.png";
-import React from "react";
 import {TodoError} from "../TodoError/TodoError";
 import {TodoInitial} from "../TodoInitial/TodoInitial";
 import {TodoContext} from "../TodoContext/TodoContext";
+import {Modal} from "../Modal/Modal";
 
 
 function AppUI() {
+    const {
+        filteredTODOs,
+        onCompleteTODO,
+        onDeleteTODO,
+        loading,
+        error,
+        openModal,
+        setOpenModal
+    } = React.useContext(TodoContext)
+
     return (
         <>
             <TodoCounter/>
             <TodoSearch/>
-            <TodoContext.Consumer>
-                {(
-                    {
-                    filteredTODOs,
-                    onCompleteTODO,
-                    onDeleteTODO,
-                    loading,
-                    error}
-                ) => (
+
                     <TodoList>
                         {loading &&
                             (<>
@@ -47,10 +50,13 @@ function AppUI() {
                             )
                         )}
                     </TodoList>
-                )}
-
-            </TodoContext.Consumer>
             <AddTodoButton/>
+
+            { openModal &&
+                <Modal>
+                    Vale por modal
+                </Modal>
+            }
             {<Footer/>}
         </>
     );
