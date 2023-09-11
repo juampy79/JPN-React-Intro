@@ -2,9 +2,12 @@ import {TodoCounter} from "../TodoCounter/TodoCounter";
 import {TodoSearch} from "../TodoSearch/TodoSearch";
 import {TodoList} from "../TodoList/TodoList";
 import {TodoItem} from "../TodoItem/TodoItem";
-import {AddTodoButton} from "../AddTodoButton";
+import {TodoLoading} from "../TodoLoading/TodoLoading";
+import {AddTodoButton} from "../AddTodoButton/AddTodoButton";
 import logoFlyka from "../../resources/flyka raw.png";
 import React from "react";
+import {TodoError} from "../TodoError/TodoError";
+import {TodoInitial} from "../TodoInitial/TodoInitial";
 
 
 function AppUI({
@@ -14,7 +17,9 @@ function AppUI({
                    setSearchValue,
                    filteredTODOs,
                    onCompleteTODO,
-                   onDeleteTODO
+                   onDeleteTODO,
+                   loading,
+                   error
                }) {
     return (
         <>
@@ -27,6 +32,16 @@ function AppUI({
                 setSearchValue={setSearchValue}
             />
             <TodoList>
+                {loading &&
+                    (<>
+                        <TodoLoading/>
+                        <TodoLoading/>
+                        <TodoLoading/>
+                    </>)
+                }
+                {error && <TodoError/>}
+                {(!loading && filteredTODOs.length === 0) && <TodoInitial/>}
+
                 {filteredTODOs.map(
                     item => (
                         <TodoItem key={item.key}
