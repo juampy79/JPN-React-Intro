@@ -9,8 +9,9 @@ function TodoProvider({children}) {
         loading,
         error
     } = useLocalStorage('TODOs_1', []);
+
     const [searchValue, setSearchValue] = React.useState("");
-    const [openModal, setOpenModal] = React.useState(true);
+    const [openModal, setOpenModal] = React.useState(false);
     const totalTODOs = TODOs.length;
     const completedTODOs = TODOs.filter(todo => todo.completed).length;
     const filteredTODOs = TODOs.filter(todo =>
@@ -20,6 +21,16 @@ function TodoProvider({children}) {
     function getIndex(updatedTODOs, todoKey) {
         return updatedTODOs.findIndex(item => item.key === todoKey);
     }
+
+    const addTODO = (text) => {
+        const currentTODOs = [...TODOs];
+        currentTODOs.push({
+            key: currentTODOs.length + 1,
+            text,
+            completed: false
+        });
+        saveTODOs(currentTODOs);
+    };
 
     const onCompleteTODO = (todoKey) => {
         console.log("Check " + todoKey);
@@ -50,7 +61,8 @@ function TodoProvider({children}) {
                 loading,
                 error,
                 openModal,
-                setOpenModal
+                setOpenModal,
+                addTODO
             }
         }>
             {children}
